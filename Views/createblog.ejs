@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+</head>
+<body>
+    <h1>Create Blog</h1>
+    <form action="/createblog" method="get" enctype="multipart/form-data">
+         
+        <div>
+        <label for="title">Title:</label>
+        <input type="text" name="title" required>
+        </div>
+
+        <div>
+        <label for="description">Description:</label>
+        <input type="text" name="description" required>
+        </div>
+
+        <div>
+        <label for="image">image</label>
+        <input type="file" name="image" required>
+        </div>
+        
+        <div>
+        <input type="submit">
+        </div>
+
+    </form>
+       
+</body>
+</html>
