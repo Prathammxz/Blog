@@ -3,19 +3,24 @@ const Blog = db.blog;
 
 exports.index = async (req, res) => {
 
-const blogs = await db.blog.findAll();
+    const blogs = await db.blog.findAll();
     console.log(blogs);
-    res.render("index", {blogs});
+    res.render("index", {
+        blogs
+    });
 };
 
-exports.renderBlog = async(req,res) =>{
-    
+exports.renderBlog = async (req, res) => {
+
     res.render("createblog");
 };
 
-exports.createBlog = async(req,res) =>{
+exports.createBlog = async (req, res) => {
     console.log(req.file)
-    const{title,description}=req.body
+    const {
+        title,
+        description
+    } = req.body
 
     db.blog.create({
         title: title,
@@ -26,33 +31,35 @@ exports.createBlog = async(req,res) =>{
     res.redirect("/index");
 };
 
-exports.singleBlog = async(req,res) =>{
+exports.singleBlog = async (req, res) => {
     console.log(req.params.id);
-    
-    const blog= await Blog.findAll({
-        where:{
+
+    const blog = await Blog.findAll({
+        where: {
             id: req.params.id
         }
     })
     console.log(blog[0]);
 
-    res.render("singleblog",{blog:blog[0]});
+    res.render("singleblog", {
+        blog: blog[0]
+    });
 };
 
-exports.deleteBlog = async(req,res) =>{
+exports.deleteBlog = async (req, res) => {
     console.log(req.params.id);
-    
-    const blog= await Blog.destroy({
-        where:{
+
+    const blog = await Blog.destroy({
+        where: {
             id: req.params.id
         }
     })
-    
+
 
     res.redirect("/")
 };
 
-exports.editBlog = async(req,res) =>{
+exports.editBlog = async (req, res) => {
     console.log(req.params.id);
 
 };
