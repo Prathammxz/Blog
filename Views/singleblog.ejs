@@ -28,22 +28,18 @@
 <body>
   <div class="container">
     <div class="row">
-      <% blogs.forEach(blog=>{ %>
-        <!-- <p>HELLO</p>
-        <p><%- blog.title %></p>
-        <p><%- blog.description %></p>
-        <img src=<%- blog.image %>> -->
-        <div class="col-md-6">
+      
           <div class="blog-post card">
             <img class="blog-image card-img-top" src=<%- blog.image %> alt="Image 1">
             <div class="card-body">
               <h2 class="blog-title card-title"><%- blog.title %></h2>
               <p class="blog-description card-text"><%- blog.description %></p>
-              <a href="/single/ <%- blog.id%>"> See more</a>
+              <p> Created at: <%- blog.createdAt %> </p>
+              <button class="btn btn-success"><a href="/edit/<%- blog.id %>"> Edit </a></button>
+              <button class="btn btn-success"><a href="/delete/<%- blog.id %>"> Delete </a></button>
+            
             </div>
           </div>
-        </div>
-       <% })%> 
     
     </div>
   </div>

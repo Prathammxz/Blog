@@ -19,6 +19,13 @@ app.post("/createblog",  upload.single("image"), blogController.createBlog);
 
 app.get("/index", blogController.index);
 
+app.get("/single/:id", blogController.singleBlog);
+
+app.get("/delete/:id", blogController.deleteBlog);
+
+app.get("/edit/:id", blogController.editBlog);
+
+
 app.use(express.static(path.join(__dirname,"Uploads")));
 
 
