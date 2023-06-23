@@ -15,6 +15,7 @@ exports.renderBlog = async (req, res) => {
 };
 
 
+//C==> Create
 exports.createBlog = async (req, res) => {
     const {
         title,
@@ -30,7 +31,7 @@ exports.createBlog = async (req, res) => {
     res.redirect("/index");
 };
 
-
+//R==> Read
 exports.singleBlog = async (req, res) => {
     const blog = await Blog.findAll({
         where: {
@@ -42,7 +43,7 @@ exports.singleBlog = async (req, res) => {
     });
 };
 
-
+//D==> Delete
 exports.deleteBlog = async (req, res) => {
     const blog = await Blog.destroy({
         where: {
@@ -52,7 +53,7 @@ exports.deleteBlog = async (req, res) => {
     res.redirect("/")
 };
 
-
+//U==>Update
 exports.editBlog = async (req, res) => {
     const blog = await Blog.findAll({
         where: {
@@ -71,7 +72,7 @@ exports.updateBlog = async (req, res) => {
 
         let updateData = {
             title: req.body.title,
-            description: req.body.description
+            description: req.body.description,
         };
 
         if (req.file) {
