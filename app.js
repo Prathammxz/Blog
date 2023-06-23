@@ -15,7 +15,7 @@ app.get("/", blogController.index);
 
 app.get("/createblog", blogController.renderBlog);
 
-app.post("/createblog",  upload.single("image"), blogController.createBlog);
+app.post("/createblog", upload.single("image"), blogController.createBlog);
 
 app.get("/index", blogController.index);
 
@@ -25,6 +25,7 @@ app.get("/delete/:id", blogController.deleteBlog);
 
 app.get("/edit/:id", blogController.editBlog);
 
+app.post("/updateblog/:id", upload.single('image'), blogController.updateBlog);
 
 app.use(express.static(path.join(__dirname,"Uploads")));
 

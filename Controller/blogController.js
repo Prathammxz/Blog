@@ -2,7 +2,6 @@ const db = require("../Model/index");
 const Blog = db.blog;
 
 exports.index = async (req, res) => {
-
     const blogs = await db.blog.findAll();
     console.log(blogs);
     res.render("index", {
@@ -10,13 +9,13 @@ exports.index = async (req, res) => {
     });
 };
 
-exports.renderBlog = async (req, res) => {
 
+exports.renderBlog = async (req, res) => {
     res.render("createblog");
 };
 
+
 exports.createBlog = async (req, res) => {
-    console.log(req.file)
     const {
         title,
         description
@@ -31,45 +30,62 @@ exports.createBlog = async (req, res) => {
     res.redirect("/index");
 };
 
-exports.singleBlog = async (req, res) => {
-    console.log(req.params.id);
 
+exports.singleBlog = async (req, res) => {
     const blog = await Blog.findAll({
         where: {
             id: req.params.id
         }
     })
-    console.log(blog[0]);
-
     res.render("singleblog", {
         blog: blog[0]
     });
 };
 
-exports.deleteBlog = async (req, res) => {
-    console.log(req.params.id);
 
+exports.deleteBlog = async (req, res) => {
     const blog = await Blog.destroy({
         where: {
             id: req.params.id
         }
     })
-
-
     res.redirect("/")
 };
 
+
 exports.editBlog = async (req, res) => {
-    console.log(req.params.id);
+    const blog = await Blog.findAll({
+        where: {
+            id: req.params.id
+        }
+    })
+    res.render("edit", {
+        blog: blog[0]
+    });
 
 };
 
+exports.updateBlog = async (req, res) => {
+    console.log(req.body.title);
+    console.log(req.body.imagepath);
 
+        let updateData = {
+            title: req.body.title,
+            description: req.body.description
+        };
 
+        if (req.file) {
+            const image = "http://localhost:4000/" + req.file.filename;
+            updateData.image = image;
+        }
 
+    const blog = await Blog.update(updateData, {
+        where: {
+            id: req.params.id,
+        },
+    });
 
-// exports.showBlogs= async(req,res)=>{
-//     const blog = await db.blog.findAll();
-//     console.log(blog);
+    console.log("Blog updated successfully");
+    res.redirect("/");
+};
 
-// };

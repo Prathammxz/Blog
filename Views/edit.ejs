@@ -25,27 +25,36 @@
 </head>
 
 <body>
-  <h1 class="text-center">Create Blog</h1>
-  <form action="/createblog" method="post" enctype="multipart/form-data" class="center-align">
+  <h1 class="text-center">Edit Blog</h1>
+  <form action="/updateblog/<%- blog.id %>" method="post" enctype="multipart/form-data" class="center-align">
 
     <div class="form-field mb-3">
       <label for="title" class="form-label">Title:</label>
-      <input type="text" class="form-control" name="title" required>
+      <input type="text" class="form-control" name="title" value="<%- blog.title %>">
     </div>
 
     <div class="form-field mb-3">
       <label for="description" class="form-label">Description:</label>
-      <textarea type="text" class="form-control description-field" name="description" required></textarea>
+      <textarea type="text" class="form-control description-field" name="description" value="<%=blog.description%>"><%- blog.description %> </textarea>
     </div>
 
     <div class="form-field mb-3">
       <label for="image" class="form-label">Image:</label>
-      <input type="file" class="form-control" name="image" required>
+      <input type="file" class="form-control" name="image"  onchange="preview()">
+      <div class="image-preview" style="width: 40%; padding: 5px;">
+        <img src="<%- blog.image %>" id="frame" alt="No preview" style="max-width:100%">
+      </div>
     </div>
 
     <button type="submit" class="btn btn-primary">Edit</button>
 
   </form>
+
+  <script>
+    function preview() {
+      frame.src=URL.createObjectURL(event.target.files[0]);
+  }
+  </script>
 
 </body>
 
