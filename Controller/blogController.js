@@ -1,5 +1,7 @@
 const db = require("../Model/index");
 const Blog = db.blog;
+// const fs = require("fs");
+// const path=require("path");
 
 exports.index = async (req, res) => {
     const blogs = await db.blog.findAll();
@@ -50,7 +52,22 @@ exports.deleteBlog = async (req, res) => {
             id: req.params.id
         }
     })
+    // const filePath = path.join(
+    //     "uploads",
+    //     blog.path.replace("http://localhost:4000/" , "")
+    //     );
+
+    // fs.unlink(filePath, (err) => {
+    //     if (err) {
+    //       console.log("Error deleting file:", err);
+    //     } else {
+    //       console.log("File deleted successfully:", filePath);
+    //     }
+    //   });
+
     res.redirect("/")
+
+
 };
 
 //U==>Update
